@@ -1,0 +1,11 @@
+{
+  "name": "s3-signed-upload",
+  "description": "Makes it easier to use S3's signed upload capabilities.",
+  "homepage": "https://github.com/jimmiebtlr/meteor-s3-signed-upload",
+  "author": "Jimmie Butler",
+  "version": "0.1.0",
+  "git": "https://github.com/jimmiebtlr/meteor-s3-signed-upload",
+  "packages": {
+    'AWS-SDK'
+  }
+}
