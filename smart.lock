@@ -1,0 +1,25 @@
+{
+  "meteor": {},
+  "dependencies": {
+    "basePackages": {
+      "s3-signed-upload": {
+        "path": "."
+      }
+    },
+    "packages": {
+      "s3-signed-upload": {
+        "path": "."
+      },
+      "aws-sdk": {
+        "git": "https://github.com/peerlibrary/meteor-aws-sdk.git",
+        "tag": "v2.0.4-1",
+        "commit": "8e5ef041df90a6a87df44273534611f420d8a2f8"
+      },
+      "blocking": {
+        "git": "https://github.com/peerlibrary/meteor-blocking.git",
+        "tag": "v0.4.1",
+        "commit": "512354e9721d931c7884b56fbb3b419d060ae8da"
+      }
+    }
+  }
+}
