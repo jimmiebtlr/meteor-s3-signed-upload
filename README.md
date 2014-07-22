@@ -37,4 +37,6 @@ var callbackFunction = function(resp){
 uploadFile( 'uploadProfile', fileHandle, callbackFunction );
 ```
 
-
+#TODO
+*Add a mechanism to track and remove unneeded files.
+*Fix the client code timout portion.
