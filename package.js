@@ -4,7 +4,9 @@ Package.describe({
 
 Package.on_use(function(api){
   api.use(['aws-sdk'], 'server');
+  api.use(['simple-schema'], 'server');
   api.export(['uploadFile'],'client');
+  api.export(['S3SignedUploadTmp'],'server');
 
   api.add_files([
     'client.js'

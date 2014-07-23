@@ -1,9 +1,6 @@
 Meteor.methods({
   requestUpload: function(profile, mime) {
     var settings = s3UploadProfiles[profile];
-    console.log( settings.mime);
-    console.log(settings.bucket);
-    console.log( settings.expire);
     var params = {
         Bucket: settings.bucket,
         Key: generateUUID(),
@@ -21,12 +18,17 @@ Meteor.methods({
     }
 
     Meteor._wrapAsync(s3.getSignedUrl('putObject', params, putObjFunc));
-    var getUrl = "https://" + params.Bucket + ".s3.amazonaws.com/" + encodeURIComponent(params.Key)
     
     resp = {
       surl: url,
-      url: getUrl
+      Bucket: params.Bucket,
+      Key: params.Key
     }
+    sigRecord = {
+      bucket: settings.bucket,
+      key: params.Key
+    }
+    S3SignedUploadTmp.insert( sigRecord );
     return resp;
   }
 });
@@ -41,3 +43,21 @@ function generateUUID(){
     return uuid;
 };
 
+S3SignedUploadTmpSchema = new SimpleSchema({
+  bucket: {
+    type: String
+  },
+  key: {
+    type: String
+  },
+  signedDateTime: {
+    type: Date,
+    autoValue: function(){ return (new Date()) }
+  },
+  ownerId: {
+    type: String,
+    autoValue: function(){ return Meteor.userId() }
+  }
+});
+
+S3SignedUploadTmp = new Meteor.Collection("S3SignedUploadTmpSchema", { schema: S3SignedUploadTmpSchema });
