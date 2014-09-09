@@ -1,5 +1,7 @@
 Package.describe({
-  summary: "S3 signed uploads for meteorjs."
+  summary: "S3 signed uploads for meteorjs.",
+  version: "0.0.1",
+  git: "https://github.com/jimmiebtlr/meteor-blog.git"
 });
 
 Package.on_use(function(api){
