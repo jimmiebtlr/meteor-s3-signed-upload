@@ -5,8 +5,8 @@ Package.describe({
 });
 
 Package.on_use(function(api){
-  api.use(['mrt:aws-sdk'], 'server');
-  api.use(['aldeed:simple-schema']);
+  api.use(['mrt:aws-sdk@0.2.0','server');
+  api.use(['aldeed:simple.schema']);
   api.export(['uploadFile'],'client');
   api.export(['S3SignedUploadTmp'],'server');
 
