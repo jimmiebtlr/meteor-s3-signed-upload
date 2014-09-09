@@ -27,13 +27,7 @@ s3UploadProfiles = {
 
 ```
 var callbackFunction = function(resp){
-  console.log("Does something with the server response");
-  console.log("File has been uploaded already");
-  console.log(resp);
-  // this is the url for public get
-  consele.log(resp.url);
-  // this is the signed url for upload, shouldn't need it though
-  console.log(resp.surl);
+  // resp.url contains where the newly uploaded file may be downloaded from.
 }
 
 uploadFile( 'uploadProfile', fileHandle, callbackFunction );
