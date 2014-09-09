@@ -1,5 +1,7 @@
-meteor-s3-signed-upload
+s3-signed-upload
 =======================
+
+    meteor add jimmiebtlr:s3-signed-upload
 
 S3 Signed Uploads for MeteorJS.
 
@@ -13,7 +15,7 @@ AWS.config.update({
 s3 = new AWS.S3();
 
 s3UploadProfiles = {
-  'uploadProfile': {
+  'PROFILE_NAME': {
     'bucket': 'BUCKET NAME',
     'mime': 'ACCEPTED MIME TYPE',
     'expries': EXPIRY_INTEGER
