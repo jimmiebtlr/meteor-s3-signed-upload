@@ -1,6 +1,6 @@
 Package.describe({
   summary: "S3 signed uploads for meteorjs.",
-  version: "0.0.1",
+  version: "0.0.2",
   git: "https://github.com/jimmiebtlr/s3-signed-upload.git"
 });
 
