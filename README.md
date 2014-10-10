@@ -30,7 +30,7 @@ var callbackFunction = function(resp){
   // resp.url contains where the newly uploaded file may be downloaded from.
 }
 
-uploadFile( 'uploadProfile', fileHandle, callbackFunction );
+uploadFile( 'PROFILE_NAME', fileHandle, callbackFunction );
 ```
 
 #TODO
