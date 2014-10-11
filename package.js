@@ -1,12 +1,12 @@
 Package.describe({
   summary: "S3 signed uploads for meteorjs.",
-  version: "0.1.6-rc.1",
+  version: "0.1.6-rc.2",
   git: "https://github.com/jimmiebtlr/meteor-s3-signed-upload.git"
 });
 
 Package.on_use(function(api){
   api.use(['mrt:aws-sdk@0.2.0'],'server');
-  api.use(['aldeed:simple-schema@0.7.0']);
+  api.use(['aldeed:simple-schema@1.0.3']);
   api.export(['uploadFile'],'client');
   api.export(['S3SignedUploadTmp'],'server');
 
