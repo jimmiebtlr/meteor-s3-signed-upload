@@ -23,6 +23,8 @@ s3UploadProfiles = {
 }
 ```
 
+S3SignedUploadTmp is a collection that tracks all requested uploads, with the intention that you remove the record from the collection after it is confirmed uploaded and actually used in an object.  This portion may be rewritten at some point.
+
 #Client Use
 
 ```
@@ -33,8 +35,13 @@ var callbackFunction = function(resp){
 uploadFile( 'PROFILE_NAME', fileHandle, callbackFunction );
 ```
 
-#TODO
-* Add a mechanism to track and remove unneeded files.
-* Fix the client code timout portion.
+#S3 Setup
 
-Pull requests welcome.
+## Cors
+<CORSRule>
+  <AllowedOrigin>*</AllowedOrigin>
+  <AllowedMethod>GET</AllowedMethod>
+  <AllowedMethod>PUT</AllowedMethod>
+</CORSRule>
+
+Note: It's probably best to set allowed origin to your domain, as well as restrict allowed headers for get and put separatly.
