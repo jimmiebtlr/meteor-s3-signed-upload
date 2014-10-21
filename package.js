@@ -1,6 +1,6 @@
 Package.describe({
   summary: "Client side uploads for meteor/s3 using signed uploads for meteorjs.",
-  version: "0.1.6",
+  version: "0.1.7-rc.1",
   git: "https://github.com/jimmiebtlr/meteor-s3-signed-upload.git"
 });
 
