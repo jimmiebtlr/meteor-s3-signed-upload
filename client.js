@@ -6,13 +6,8 @@ uploadFile = function( profile, file, func ){
       xhr.setRequestHeader("Content-Type",file.type);
       xhr.setRequestHeader("Cache-Control","max-age=" + 3600*24*365);
       xhr.send(file);
-     
-      funcWrapper = function(){
-        func(resp);
-      }
-
-      //TODO fix this crappy hack
-      setTimeout(funcWrapper, 1000);
+      
+      func( resp );
     } else {
       console.log(err);
     }

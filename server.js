@@ -1,6 +1,7 @@
 Meteor.methods({
   requestUpload: function(profile, mime) {
     var settings = s3UploadProfiles[profile];
+    if( mime !== settings.mime ){ return { error: "Expected type " + settings.mime } };
     var params = {
         Bucket: settings.bucket,
         Key: generateUUID(),
