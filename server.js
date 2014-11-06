@@ -1,11 +1,9 @@
 Meteor.methods({
-  requestUpload: function(profile, mime, size) {
+  requestUpload: function(profile, mime ) {
     check( profile, String );
     check( mime, String );
-    check( size, Number );
     var settings = s3UploadProfiles[profile];
     if( mime !== settings.mime ){ return { error: "Expected type " + settings.mime } };
-    if( size > settings.maxSize ){ return { error: "File to large, max size " + settings.maxSize } };
     var params = {
         Bucket: settings.bucket,
         Key: generateUUID(),
