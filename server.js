@@ -1,7 +1,11 @@
 Meteor.methods({
-  requestUpload: function(profile, mime) {
+  requestUpload: function(profile, mime, size) {
+    check( profile, String );
+    check( mime, String );
+    check( size, Number );
     var settings = s3UploadProfiles[profile];
     if( mime !== settings.mime ){ return { error: "Expected type " + settings.mime } };
+    if( size > settings.maxSize ){ return { error: "File to large, max size " + settings.maxSize } };
     var params = {
         Bucket: settings.bucket,
         Key: generateUUID(),
@@ -18,7 +22,7 @@ Meteor.methods({
         }
     }
 
-    Meteor._wrapAsync(s3.getSignedUrl('putObject', params, putObjFunc));
+    Meteor.wrapAsync(s3.getSignedUrl('putObject', params, putObjFunc));
     
     resp = {
       surl: url,

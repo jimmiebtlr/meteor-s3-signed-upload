@@ -38,10 +38,12 @@ uploadFile( 'PROFILE_NAME', fileHandle, callbackFunction );
 #S3 Setup
 
 ## Cors
-<CORSRule>
-  <AllowedOrigin>*</AllowedOrigin>
-  <AllowedMethod>GET</AllowedMethod>
-  <AllowedMethod>PUT</AllowedMethod>
-</CORSRule>
 
-Note: It's probably best to set allowed origin to your domain, as well as restrict allowed headers for get and put separatly.
+Setup CORS to allow puts from your domain.
+
+
+#TODO
+
+Add Progress callbacks
+Add Content Length Limitations
+
