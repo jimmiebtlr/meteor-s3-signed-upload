@@ -1,16 +1,27 @@
+FileSchema = new SimpleSchema({
+  name: {
+    type: String
+  },
+  type: {
+    type: String
+  },
+  size: {
+    type: Number,
+    min: 0
+  }
+});
+
 Meteor.methods({
-  requestUpload: function(profile, mime ) {
+  requestUploads: function(profile, files ) {
     check( profile, String );
-    check( mime, String );
+    check( files, [FileSchema] );
     var settings = s3UploadProfiles[profile];
-    if( mime !== settings.mime ){ return { error: "Expected type " + settings.mime } };
     var params = {
         Bucket: settings.bucket,
-        Key: generateUUID(),
         ContentType: settings.mime,
         Expires: settings.expires
     };
-    
+   
     var url;
     var putObjFunc = function(err, surl) {
         if (!err) {
@@ -19,19 +30,31 @@ Meteor.methods({
             console.log("Error signing url " + err);
         }
     }
-
-    Meteor.wrapAsync(s3.getSignedUrl('putObject', params, putObjFunc));
     
-    resp = {
-      surl: url,
-      Bucket: params.Bucket,
-      Key: params.Key
-    }
-    sigRecord = {
-      bucket: settings.bucket,
-      key: params.Key
-    }
-    S3SignedUploadTmp.insert( sigRecord );
+    var resp = { files: [] };
+
+    _.each( files, function( file ){
+      if( file.type !== settings.mime ){ 
+        resp.files.push( {error: "Expected type " + settings.mime } );
+      }else{
+        params.Key = generateUUID();
+        Meteor.wrapAsync(s3.getSignedUrl('putObject', params, putObjFunc));
+        resp.files.push(
+          {
+            name: file.name,
+            surl: url,
+            bucket: settings.bucket,
+            key: params.Key
+          }
+        );
+        var sigRecord = {
+          bucket: settings.bucket,
+          key: params.key
+        }
+        S3SignedUploadTmp.insert( sigRecord );
+      }
+    });
+    
     return resp;
   }
 });
